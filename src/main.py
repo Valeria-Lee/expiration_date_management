@@ -1,7 +1,10 @@
 import flet as ft
-
+from flet_camera import Camera
 
 def main(page: ft.Page):
+    # nomas ponle el e referente al eventos
+    def do_something(e):
+        print("hola miguelon")
 
     page.fonts = {
         "Inter": "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
@@ -27,28 +30,41 @@ def main(page: ft.Page):
             colors=["#28377A","#BDD1E3"])
     ))
     
-    page.add(ft.Container(
-        content=ft.Text(
-        "Select an option",
-        size=64,
-        color="#28377A"),
-        alignment=ft.alignment.center
-        ))
-
-    page.add(
-        ft.Container(
-            content=ft.Column(
-            controls=[ft.ElevatedButton(text="Add new lot",
-            style=ft.ButtonStyle(
-            text_style=ft.TextStyle(size=48,weight=ft.FontWeight.NORMAL),padding=20),
+    def home_view(page):
+        return ft.View(
+            "/",
+            [
+            ft.Container(
+            content=ft.Text(
+            "Select an option",
+            size=64,
+            color="#28377A"),
+            alignment=ft.alignment.center
             ),
-            ft.ElevatedButton(text="Check trolley",
-            style=ft.ButtonStyle(
-            text_style=ft.TextStyle(size=48,weight=ft.FontWeight.NORMAL),padding=20))],
-            spacing=24),
-            alignment=ft.alignment.center,
-            height=720
+            ft.Container(
+                content=ft.Column(
+                controls=[ft.ElevatedButton(text="Add new lot",
+                style=ft.ButtonStyle(
+                text_style=ft.TextStyle(size=48,weight=ft.FontWeight.NORMAL),padding=20),
+                on_click=do_something
+                ),
+                ft.ElevatedButton(text="Check trolley",
+                style=ft.ButtonStyle(
+                text_style=ft.TextStyle(size=48,weight=ft.FontWeight.NORMAL),padding=20),
+                on_click=do_something
+                )],
+                spacing=24,),
+                alignment=ft.alignment.center,
+                height=720
+            )]
         )
+
+    def scan_view(page):
+        return ft.View(
+            "/scan",
+            [
+                
+            ]
         )
 
 ft.app(main)
